@@ -14,6 +14,19 @@ resource "aws_iam_user_policy" "this" {
         Action   = ["ssm:GetParameter", "ssm:GetParameters", "ssm:DescribeParameters"]
         Effect   = "Allow"
         Resource = "arn:aws:ssm:eu-central-1:211125336879:parameter/*"
+      },
+      {
+        Action = ["s3:GetObject", "s3:PutObject", "s3:ListBucket"]
+        Effect = "Allow"
+        Resource : [
+          "arn:aws:s3:::hetzner-terraform-state",
+          "arn:aws:s3:::hetzner-terraform-state/*"
+        ]
+      },
+      {
+        Action = ["dynamodb:GetItem", "dynamodb:PutItem", "dynamodb:UpdateItem", "dynamodb:DeleteItem"]
+        Effect = "Allow"
+        Resource : "arn:aws:dynamodb:eu-central-1:211125336879:table/terraform_state"
       }
     ]
   })

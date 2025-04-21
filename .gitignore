@@ -37,4 +37,5 @@ override.tf.json
 terraform.rc
 
 .idea
+scripts/load_secrets.sh
 

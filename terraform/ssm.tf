@@ -19,3 +19,15 @@ resource "random_password" "this" {
   special     = true
   min_special = 5
 }
+
+resource "aws_ssm_parameter" "storagebox_ssh_private_key" {
+  name = "personal-projects-storagebox-ssh-private-key"
+  value = file(var.storagebox_ssh_private_key)
+  type = "SecureString"
+}
+
+resource "aws_ssm_parameter" "storagebox_ssh_public_key" {
+  name = "personal-projects-storagebox-ssh-public-key"
+  value = file(var.storagebox_ssh_public_key)
+  type = "SecureString"
+}
